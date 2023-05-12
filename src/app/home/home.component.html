@@ -1,0 +1,13 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let product of Products;let i=index; let odd=odd; trackBy: trackById">
+            <app-product [product]="product"></app-product>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="Products.length == 0">
+        <div class="col-sm-12">
+            <p class="text-center">Oops! No product found for your search</p>
+        </div>
+    </div>
+</div>

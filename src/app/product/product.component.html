@@ -1,0 +1,20 @@
+<div class="thumb-wrapper" *ngIf="product">
+    <span class="wish-icon"><i class="fa-solid fa-heart"></i></span>
+    <div class="img-box">
+        <img [src]="product.thumbnail" class="img-fluid" alt="">
+    </div>
+    <div class="thumb-content">
+        <h4>{{product.title}}</h4>
+        <h6>Brand {{product.brand}}</h6>
+        <div class="star-rating">
+            <p>Rating {{product.rating | number}}</p>
+            <p>Stock <span class="text-primary" *ngIf="product.stock > 0">{{product.stock}} available</span> <span
+                    class="text-danger" *ngIf="product.stock <= 0">out of
+                    stock</span></p>
+        </div>
+        <p class="item-price">Price. {{product.price | currency :'INR'}} <span *ngIf="product.discountPercentage > 0">
+                off {{product.discountPercentage | number }}%</span></p>
+        <a href="#" class="btn btn-primary">Add to Cart</a>
+        <a [routerLink]="['../product',product.id]" class="mx-2 btn btn-primary">View</a>
+    </div>
+</div>
