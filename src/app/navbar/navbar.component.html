@@ -21,9 +21,19 @@
                     placeholder="Search..." aria-label="Search">
             </form>
 
-            <div class="text-end">
+
+            <div class="text-end" *ngIf="!User.id">
                 <button [routerLink]="['/log-in']" type="button" class="btn btn-outline-light me-2">Login</button>
                 <button [routerLink]="['/register']" type="button" class="btn btn-warning">Sign-up</button>
+            </div>
+            <div class="text-end" *ngIf="User.id">
+                <button type="button" class="btn btn-outline-light me-2">Hii {{User.username}}</button>
+                <button (click)="logOut()" type="button" class="btn btn-warning">LogOut</button>
+            </div>
+
+            <div class="text-end">
+                <button type="button" [routerLink]="['/checkout']" class="btn btn-outline-light me-2 mx-2"><i
+                        class="fa fa-shopping-cart" aria-hidden="true"></i> ({{card.getItems().length}})</button>
             </div>
         </div>
     </div>

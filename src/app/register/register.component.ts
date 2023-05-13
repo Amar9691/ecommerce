@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { HomeService } from '../home.service';
 import { Router } from '@angular/router';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ export class RegisterComponent {
   constructor(
     private form: FormBuilder,
     private homeSerive: HomeService,
-    private Router: Router
+    private Router: Router,
+    private message: MessageService
   ) {}
   registerForm = this.form.group({
     userName: new FormControl('', [Validators.required]),
@@ -42,7 +44,14 @@ export class RegisterComponent {
     this.homeSerive
       .registerUser(JSON.stringify(payload))
       .subscribe((Response) => {
-        this.Router.navigate(['/log-in']);
+        if (Response.id) {
+          this.message.updateMessageStatus(true);
+          this.message.updateMessage('User registered successfully');
+          this.Router.navigate(['/log-in']);
+        } else {
+          this.message.updateMessageStatus(false);
+          this.message.updateMessage('Something Went Wrong! Please try again');
+        }
       });
   }
 }
