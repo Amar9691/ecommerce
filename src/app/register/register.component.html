@@ -1,20 +1,40 @@
 <div class="wrapper">
-    <div class="logo">
-        <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt="">
-    </div>
     <div class="text-center mt-4 name">
         Create new account
     </div>
-    <form class="p-3 mt-3">
-        <div class="form-field d-flex align-items-center">
-            <input type="text" name="userName" id="userName" placeholder="Username">
+    <form [formGroup]="registerForm" class="p-3 mt-3" (ngSubmit)="register()">
+        <div class="py-2"
+            *ngIf="registerForm.controls['userName'].touched && registerForm.controls['userName']?.hasError('required')">
+            <p class="text-danger"><sup>*</sup>Invalid Username</p>
         </div>
         <div class="form-field d-flex align-items-center">
-            <input type="password" name="password" id="pwd" placeholder="Password">
+            <input type="text" formControlName="userName" placeholder="Username">
         </div>
-        <button class="btn mt-3">Sign up</button>
+        <div class="py-2"
+            *ngIf="registerForm.controls['email'].touched && registerForm.controls['email']?.hasError('required')">
+            <p class="text-danger"><sup>*</sup>Email required</p>
+        </div>
+        <div class="py-2"
+            *ngIf="registerForm.controls['email'].touched && registerForm.controls['email']?.hasError('email')">
+            <p class="text-danger"><sup>*</sup>Please Enter Valid Email</p>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input type="email" formControlName="email" placeholder="Email">
+        </div>
+        <div class="py-2"
+            *ngIf="registerForm.controls['password'].touched && registerForm.controls['password']?.hasError('required')">
+            <p class="text-danger"><sup>*</sup>Password required</p>
+        </div>
+        <div class="py-2"
+            *ngIf="registerForm.controls['password'].touched &&  registerForm.controls['password']?.hasError('minLength')">
+            <p class="text-danger"><sup>*</sup>Password must have 8 characts</p>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input type="password" formControlName="password" minlength="8" placeholder="Password">
+        </div>
+        <button class="btn mt-3" [disabled]="!registerForm.valid">Sign up</button>
     </form>
-    <div class="text-center fs-6">
-        <a href="#">Already have account ?</a> or <a href="#">Login</a>
+    <div class=" text-center fs-6">
+        <a [routerLink]="['/log-in']">Already have account ?</a> or <a [routerLink]="['/log-in']">Login</a>
     </div>
 </div>

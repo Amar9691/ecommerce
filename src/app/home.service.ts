@@ -58,4 +58,17 @@ export class HomeService {
       })
     );
   }
+
+  registerUser(data: string): Observable<any> {
+    return this.http.post(env.API_URL + 'users/add', data).pipe(
+      tap({
+        next: (value) => {
+          console.log('User account created successfully');
+        },
+        error: (error) => {
+          retry(3);
+        },
+      })
+    );
+  }
 }

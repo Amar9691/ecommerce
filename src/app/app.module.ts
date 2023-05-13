@@ -16,6 +16,7 @@ import { FaqComponent } from './faq/faq.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,13 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     RegisterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, CommonModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    CommonModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
