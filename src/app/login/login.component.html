@@ -2,14 +2,26 @@
     <div class="text-center mt-4 name">
         Login into Account
     </div>
-    <form class="p-3 mt-3">
-        <div class="form-field d-flex align-items-center">
-            <input type="text" name="userName" id="userName" placeholder="Username">
+    <form [formGroup]="loginForm" (ngSubmit)="submitLogin()" class="p-3 mt-3">
+        <div class="py-2"
+            *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].hasError('required')">
+            <p class="text-danger"><sup>*</sup>User name required</p>
         </div>
         <div class="form-field d-flex align-items-center">
-            <input type="password" name="password" id="pwd" placeholder="Password">
+            <input type="text" formControlName="username" placeholder="Username">
         </div>
-        <button class="btn mt-3">Login</button>
+        <div class="py-2"
+            *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].hasError('required')">
+            <p class="text-danger"><sup>*</sup>Pasword required</p>
+        </div>
+        <div class="py-2"
+            *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].hasError('minLength')">
+            <p class="text-danger"><sup>*</sup>Password Must have 8 characts</p>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input type="password" formControlName="password" placeholder="Password">
+        </div>
+        <button class="btn mt-3" [disabled]="!loginForm.valid">Login</button>
     </form>
     <div class="text-center fs-6">
         <a [routerLink]="['/register']">Forget password?</a> or <a [routerLink]="['/register']">Sign up</a>

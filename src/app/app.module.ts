@@ -17,6 +17,9 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertComponent } from './alert/alert.component';
+import { CardComponent } from './card/card.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     LoginComponent,
     RegisterComponent,
+    AlertComponent,
+    CardComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

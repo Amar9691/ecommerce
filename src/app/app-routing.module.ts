@@ -8,6 +8,8 @@ import { FaqComponent } from './faq/faq.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { auth } from './auth';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -36,6 +38,12 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     title: 'signup for a profile',
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    title: 'checkout',
+    canActivate: [auth],
   },
 ];
 
