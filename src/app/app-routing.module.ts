@@ -62,7 +62,9 @@ export class CustomTitleStragety extends TitleStrategy {
 }
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    initialNavigation: 'enabledBlocking'
+})],
   exports: [RouterModule],
   providers: [{ provide: TitleStrategy, useClass: CustomTitleStragety }],
 })

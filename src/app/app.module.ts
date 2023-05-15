@@ -39,7 +39,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     CheckoutComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
